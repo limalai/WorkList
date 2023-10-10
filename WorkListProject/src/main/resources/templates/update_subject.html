@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style type="text/css">
+    label {
+        display: inline-block;
+        width: 200px;
+        margin: 5px;
+        text-align: left;
+    }
+    input[type=text], input[type=password], select {
+        display: inline-block;
+        width: 200px;
+    }
+    input[type=radio] {
+        margin-left: 45px;
+    }
+    input[type=checkbox] {
+        margin-right: 190px;
+    }  
+    button {
+        padding: 5px;
+        margin: 10px;
+    }
+</style>
+<title>Update</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<div Category Updating>
+    <form th:action="@{/update_subject/{id}(id=${subject.subjectID})}" th:object="${subject}" method="post">
+        
+        <label for="Name">Name</label>
+        <input type="text" th:field="*{Name}" id="Name" placeholder="Name">
+        
+        <label for="Detail">Detail</label>
+        <input type="text" th:field="*{subjectDetail.Detail}" id="detail" placeholder="subjectDetail.Detail">
+        
+        <label for="MidtermScore">Midterm Score</label>
+        <input type="text" th:field="*{subjectDetail.midtermScore}" id="mid" placeholder="subjectDetail.midtermScore">
+        
+        <label for="FinalScore">Final Score</label>
+        <input type="text" th:field="*{subjectDetail.finalScore}" id="final" placeholder="Final Score">
+        
+        <label for="ProjectScore">Project Score</label>
+        <input type="text" th:field="*{subjectDetail.projectScore}" id="project" placeholder="subjectDetail.projectScore">
+        
+        <label for="AssignmentScore">Assignment Score</label>
+        <input type="text" th:field="*{subjectDetail.assignmentScore}" id="ass" placeholder="subjectDetail.assignmentScore">
+        
+        <input type="submit" value="Update Subject">
+    </form>
+</div>
+
+</body>
+</html>

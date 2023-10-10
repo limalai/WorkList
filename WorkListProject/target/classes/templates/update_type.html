@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style type="text/css">
+    label {
+        display: inline-block;
+        width: 200px;
+        margin: 5px;
+        text-align: left;
+    }
+    input[type=text], input[type=password], select {
+        display: inline-block;
+        width: 200px;
+    }
+    input[type=radio] {
+        margin-left: 45px;
+    }
+    input[type=checkbox] {
+        margin-right: 190px;
+    }
+    button {
+        padding: 5px;
+        margin: 10px;
+    }
+</style>
+<title>Update</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<div Type Updating>
+    <form th:action="@{/update_type/{id}(id=${type.ID})}" th:object="${type}" method="post">
+        
+        <label for="Name">Name</label>
+        <input type="text" th:field="*{Name}" id="Name" placeholder="Name">
+        
+        <input type="submit" value="Update Type">
+    </form>
+</div>
+
+</body>
+</html>
