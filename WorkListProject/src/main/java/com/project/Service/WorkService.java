@@ -178,4 +178,22 @@ public class WorkService {
 		var work = workRepository.findById(id).get();
 		workRepository.delete(work);
 	}
+	
+	//--------
+	
+	public List<Work> searchWork(String name) {
+	    //List<Work> workResults;
+	    //workResults = workRepository.findByName(query);
+	    return workRepository.findByNameContaining(name);
+	}
+	public List<Subject> searchSubject(String name) {
+	    return subjectRepository.findByNameContaining(name);
+	}
+	public List<Type> searchType(String name) {
+	    return typeRepository.findByNameContaining(name);
+	}
+	public List<Status> searchStatus(String name) {
+	    return statusRepository.findByNameContaining(name);
+	}
+	
 }

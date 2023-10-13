@@ -49,6 +49,17 @@
     <label for="nav-toggle" class="nav-toggle-label">
         <span class="hamburger"></span>
     </label>
+
+    <!--b search-->
+    <div class="container mt-3">
+		<form th:action="@{/list_status}" method="get">
+			<div class="form-group">
+				<input type="text" class="form-control" id="searchInput" name="query" placeholder="Search">
+			</div>
+			<button type="submit" class="btn btn-primary">Search</button>
+		</form>
+	</div>
+
     <nav class="nav">
         <ul class="nav-list">
             <li><a href="list_work">Work List</a></li>
@@ -71,7 +82,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="status:${statusList}">
+                <tr th:each="status:${statusResults}" th:if="${statusResults}">
+                    <td th:text="${status.ID}"></td>
+                    <td th:text="${status.Name}"></td>
+                    <td><a th:href="@{/edit_status/{id}(id=${status.ID})}" class="btn btn-primary custom-btn">Edit</a></td>
+                    <td><a th:href="@{/delete_status/{id}(id=${status.ID})}" class="btn btn-danger custom-btn">Delete</a></td>
+                </tr>
+                <tr th:each="status:${statusResults}" th:unless="${statusResults}">
                     <td th:text="${status.ID}"></td>
                     <td th:text="${status.Name}"></td>
                     <td><a th:href="@{/edit_status/{id}(id=${status.ID})}" class="btn btn-primary custom-btn">Edit</a></td>

@@ -68,6 +68,15 @@
     </style>
 </head>
 <body>
+    <div class="container mt-3">
+		<form th:action="@{/list_type}" method="get">
+			<div class="form-group">
+				<input type="text" class="form-control" id="searchInput" name="query" placeholder="Search">
+			</div>
+			<button type="submit" class="btn btn-primary">Search</button>
+		</form>
+	</div>
+    
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label">
         <span class="hamburger"></span>
@@ -93,7 +102,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="type:${typeList}">
+                <tr th:each="subject:${subjectResults}" th:if="${subjectResults}">
+                    <td th:text="${type.ID}"></td>
+                    <td th:text="${type.Name}"></td>
+                    <td><a th:href="@{/edit_type/{id}(id=${type.ID})}" class="btn btn-primary custom-btn">Edit</a></td>
+                    <td><a th:href="@{/delete_type/{id}(id=${type.ID})}" class="btn btn-danger custom-btn">Delete</a></td>
+                </tr>
+                <tr th:each="subject:${subjectResults}" th:unless="${subjectResults}">
                     <td th:text="${type.ID}"></td>
                     <td th:text="${type.Name}"></td>
                     <td><a th:href="@{/edit_type/{id}(id=${type.ID})}" class="btn btn-primary custom-btn">Edit</a></td>

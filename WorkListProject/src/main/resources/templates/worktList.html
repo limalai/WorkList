@@ -66,6 +66,14 @@
     </style>
 </head>
 <body>
+    <div class="container mt-3">
+		<form th:action="@{/list_work}" method="get">
+			<div class="form-group">
+				<input type="text" class="form-control" id="searchInput" name="query" placeholder="Search Work">
+			</div>
+			<button type="submit" class="btn btn-primary">Search</button>
+		</form>
+	</div>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label">
         <span class="hamburger"></span>
@@ -95,13 +103,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="work:${work}">
+                <tr th:each="work: ${workResults}" th:if="${workResults}">
                     <td th:text="${work.WorkID}"></td>
                     <td th:text="${work.name}"></td>
                     <td th:text="${work.date}"></td>
-                    <td th:text="${work.subject.subjectID}"></td>
-                    <td th:text="${work.type.ID}"></td>
-                    <td th:text="${work.status.ID}"></td>
+                    <td th:text="${work.subject.Name}"></td>
+                    <td th:text="${work.type.Name}"></td>
+                    <td th:text="${work.status.Name}"></td>
+                    <td><a th:href="@{/edit_work/{id}(id=${work.WorkID})}" class="btn btn-primary custom-btn">Edit</a></td>
+                    <td><a th:href="@{/delete_work/{id}(id=${work.WorkID})}" class="btn btn-danger custom-btn">Delete</a></td>
+                </tr>
+                <tr th:each="work: ${workResults}" th:unless="${workResults}">
+                    <td th:text="${work.WorkID}"></td>
+                    <td th:text="${work.name}"></td>
+                    <td th:text="${work.date}"></td>
+                    <td th:text="${work.subject.Name}"></td>
+                    <td th:text="${work.type.Name}"></td>
+                    <td th:text="${work.status.Name}"></td>
                     <td><a th:href="@{/edit_work/{id}(id=${work.WorkID})}" class="btn btn-primary custom-btn">Edit</a></td>
                     <td><a th:href="@{/delete_work/{id}(id=${work.WorkID})}" class="btn btn-danger custom-btn">Delete</a></td>
                 </tr>
